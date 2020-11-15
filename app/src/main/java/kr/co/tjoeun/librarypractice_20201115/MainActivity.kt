@@ -1,5 +1,6 @@
 package kr.co.tjoeun.librarypractice_20201115
 
+import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -52,7 +54,13 @@ class MainActivity : BaseActivity() {
             }
 
 
+//            가이드북을 들고 => 실제로 권한 체크 실행
 
+            TedPermission.with(mContext)
+                    .setPermissionListener(pl)
+                    .setDeniedMessage("전화 권한 거부")
+                    .setPermissions(Manifest.permission.CALL_PHONE)
+                    .check()
 
 
         }
